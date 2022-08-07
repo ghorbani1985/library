@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>سامانه  ثبت کتاب در کتابخانه</title>
+    <link rel="stylesheet" href="./build/tailwind.css" />
+  </head>
+  <body class="bg-[url('/assets/images/libraryBg.webp')] bg-cover">
+    <main class="container flex flex-col justify-center items-center gap-y-4">
+      <!-- Header Section -->
+      <header class="bg-gradient-to-r from-purple-900 via-purple-600 to-purple-400 text-white p-6 rounded-lg w-full lg:w-3/4 flex items-center justify-center border-2 border-gray-200 borer-solid">
+       <div class="self-start">
+          <img src="../assets/images/letLogo.png" class="w-10 h-10" alt="letLogo">
+       </div>
+        <div class="flex flex-1 justify-center items-center">
+          <p class="font-bold text-xs md:text-lg text-center">سامانه ثبت کتاب در کتابخانه </p>
+        </div>
+      </header>
+      <!-- Date Section -->
+      <p id="dateNow" class="font-bold text-lg text-purple-900"></p>
+      
+
+    <!-- Info Section -->
+       <div class="flex flex-col items-center md:justify-between w-full lg:w-3/4 gap-8 bg-gray-100 rounded-lg opacity-95 p-2 shadow-lg">
+           <!-- Calculation of rental costs Section -->
+          <section id="calcSection" class="w-full">
+           <form onsubmit="return false" id="libraryBookForm">
+    <fieldset class="border-2 border-solid border-slate-900 rounded-lg p-3">
+      <div class="flex justify-center items-center">
+        <img src="../assets/images/libraryLogo.png" alt="libraryLogo" class="w-28 h-28">
+      </div>
+      <legend class="text-slate-900 font-bold px-2 text-center">افزودن کتاب جدید به کتابخانه</legend>
+      <label for="bookName" class="text-slate-900 font-bold">نام کتاب یا کد کتاب</label>
+        <input type="text" id="bookName" name="bookName" class="my-2 rounded-full shadow-lg" placeholder="لطفا نام کتاب را وارد نمایید" />
+      <div class="text-green-500 my-4 text-justify"><svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 inline-block pl-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg>
+      کاربر گرامی لطفا جهت ثبت کتاب جدید، نام کتاب و جهت حذف کتاب، کد کتاب را وارد نمایید.
+      </div>
+       <div class="flex justify-center items-center mt-6 mb-3 gap-x-4">
+         <button type="submit" onclick="addBook()" id="submitBtn" name="submitBtn" class=" text-white rounded-full text-xs md:text-base p-2 md:px-4 md:py-2 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:h-8 md:w-8 inline-block pl-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+</svg>ثبت کتاب جدید</button>
+         <button type="submit" onclick="deleteBook()" id="deleteBtn" name="deleteBtn" class="text-white rounded-full p-2 text-xs md:text-base md:px-4 md:py-2  bg-gradient-to-r from-red-400 to-red-800 hover:from-red-800 hover:to-red-400 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:h-8 md:w-8 inline-block pl-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+</svg>حذف کتاب </button>
+       </div>
+    </fieldset>
+  </form>
+        </section>
+        </div>
+          <div class="flex flex-col items-center md:justify-between w-full gap-8 bg-gray-100 rounded-lg opacity-95 p-2 shadow-lg">
+         <table class="text-xs w-full md:text-base border-separate border rounded-md border-slate-500 my-5 text-center">
+  <thead>
+    <tr class="odd:bg-white even:bg-slate-100">
+      <th class="border border-white bg-slate-800 text-white p-2 rounded-md w-1/4">کد کتاب</th>
+      <th class="border border-white bg-slate-800 text-white p-2 rounded-md w-2/4">نام کتاب</th>
+      <th class="border border-white bg-slate-800 text-white p-2 rounded-md w-1/4">عملیات</th>
+    </tr>
+  </thead>
+  <tbody id="booksBody">
+
+  </tbody>
+</table>
+
+          </div>
+      
+    </main>
+    <script src="../src/js/library.js"></script>
+  </body>
+</html>

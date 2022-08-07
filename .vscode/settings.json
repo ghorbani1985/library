@@ -1,0 +1,8 @@
+{
+  "liveServer.settings.port": 5501,
+  "editor.fontFamily": "'Fira Code',Vazir, 'Courier New', monospace",
+  "editor.fontSize": 16,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "prettier.printWidth": 90
+}
